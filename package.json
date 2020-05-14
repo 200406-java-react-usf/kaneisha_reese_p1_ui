@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/200406-java-react-usf/revaboards-ui.git"
+    "url": "git+https://github.com/200406-java-react-usf/kaneisha_reese_p1_ui.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/200406-java-react-usf/revaboards-ui/issues"
+    "url": "https://github.com/200406-java-react-usf/kaneisha_reese_p1_ui/issues"
   },
-  "homepage": "https://github.com/200406-java-react-usf/revaboards-ui#readme",
+  "homepage": "https://github.com/200406-java-react-usf/kaneisha_reese_p1_ui#readme",
   "devDependencies": {
     "typescript": "^3.8.3"
   }
