@@ -10,7 +10,6 @@ import {
     Button 
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab'
-import classes from "*.module.css";
 import { User } from "../../dtos/user";
 
 
@@ -34,7 +33,7 @@ const useStyles = makeStyles({
 });
 
 const LoginComponent = (props: ILoginProps) => {
-    const classees = useStyles();
+    const classes = useStyles();
 
     const [username, setUsername] = useState('');
     const [password,setPassword] = useState('');
