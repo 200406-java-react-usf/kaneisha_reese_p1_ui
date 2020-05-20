@@ -1,5 +1,5 @@
 import { IState } from "../../reducers";
-import HomeComponent from "./HomeComponent";
+import DashboardComponent from "./DashboardComponent";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state: IState) => {
@@ -13,4 +13,4 @@ const mapDispatchToProps = {
     
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardComponent);

@@ -11,20 +11,19 @@ import { Link } from "react-router-dom";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-interface IHomeProps {
+interface IDashboardProps {
     authUser:User;
-    
 }
 
 const useStyles = makeStyles({
-    homeContainer: {
+    dashboardContainer: {
         display: "flex",
         justifyContent: "center",
         margin: 20,
         marginTop: 40,
         padding: 20
     },
-    homeGrid: {
+    dashboardGrid: {
         width: "100%",
         textAlign: "center"
     },
@@ -46,19 +45,19 @@ const useStyles = makeStyles({
         padding: 30
     }
   });
+ 
   
 
 
-const HomeComponent = (props: IHomeProps) => {
+const DashboardComponent = (props: IDashboardProps) => {
     const classes = useStyles();
-
     return (
         !props.authUser ? <Redirect to='/login' />:
         (props.authUser.role==='admin')?
-            <div className={classes.homeContainer}>   
+            <div className={classes.dashboardContainer}>   
                 
                 <Paper className={classes.paper}>    
-                    <Grid container className={classes.homeGrid}>
+                    <Grid container className={classes.dashboardGrid}>
                         <Grid item sm = {12} className={classes.gridTitle}>
                         <List className={classes.list}>
                                 <ListItemText inset>
@@ -83,17 +82,10 @@ const HomeComponent = (props: IHomeProps) => {
                             <Typography variant="h4">Employee</Typography>
                         </Grid>
                         
-                        <Grid item sm = {4} >
-                            <Typography variant="button">
-                                <Button>
-                                    <Link to='/update' className={classes.link}>Update Password</Link>
-                                </Button>    
-                            </Typography>    
-                        </Grid>
                         <Grid item sm={4} >
                         <Typography variant="h6">
                                 <Button>
-                                    View Reimbursements
+                                <Link to='/reimbs' className={classes.link}>View Reimbursements</Link>
                                 </Button>    
                             </Typography> 
                         </Grid>
@@ -103,19 +95,6 @@ const HomeComponent = (props: IHomeProps) => {
                                     Submit Reimbursement
                                 </Button>    
                             </Typography> 
-                        </Grid>
-
-                        
-
-                        <Grid item sm = {12} className={classes.gridTitle}>
-                            <Typography variant="h4">Finance Manager</Typography>
-                        </Grid>
-                        <Grid item sm = {4} >
-                            <Typography variant="button">
-                                <Button>
-                                    View All Reimbursements
-                                </Button>    
-                            </Typography>    
                         </Grid>
 
                         <Grid item sm = {12} className={classes.gridTitle}>
@@ -140,10 +119,10 @@ const HomeComponent = (props: IHomeProps) => {
             
             </div> 
         : (props.authUser.role==='manager')?
-        <div className={classes.homeContainer}>   
+        <div className={classes.dashboardContainer}>   
                 
             <Paper className={classes.paper}>    
-                <Grid container className={classes.homeGrid}>
+                <Grid container className={classes.dashboardGrid}>
                     <Grid item sm = {12} className={classes.gridTitle}>
                     <List className={classes.list}>
                             <ListItemText inset>
@@ -206,10 +185,10 @@ const HomeComponent = (props: IHomeProps) => {
         
         </div> 
         : 
-        <div className={classes.homeContainer}>   
+        <div className={classes.dashboardContainer}>   
                 
             <Paper className={classes.paper}>    
-                <Grid container className={classes.homeGrid}>
+                <Grid container className={classes.dashboardGrid}>
                     <Grid item sm = {12} className={classes.gridTitle}>
                     <List className={classes.list}>
                             <ListItemText inset>
@@ -261,4 +240,4 @@ const HomeComponent = (props: IHomeProps) => {
     )
 }
 
-export default HomeComponent;
+export default DashboardComponent;
