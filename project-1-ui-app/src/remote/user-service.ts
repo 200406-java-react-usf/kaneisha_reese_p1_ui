@@ -2,7 +2,7 @@ import { User } from "../dtos/user";
 import { ersClient } from "./ers-client";
 import { NewUser } from "../dtos/new-user";
 
-export async function register(newUser: NewUser) {
+export async function addUser(newUser: NewUser) {
     let response = await ersClient.post('/users', newUser);
     return await response.data;
 }
