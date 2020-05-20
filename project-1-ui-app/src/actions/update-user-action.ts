@@ -1,6 +1,7 @@
-import { User } from "../dtos/user"
+
 import { Dispatch } from "redux"
 import { updateUser } from "../remote/user-service"
+import { NewUser } from "../dtos/new-user"
 
 
 export const updateActionTypes = {
@@ -9,7 +10,7 @@ export const updateActionTypes = {
     INTERNAL_SERVER_ERROR: 'DEVBOARDS_INTERNAL_SERVER_ERROR'
 }
 
-export const updateAction = (newUser: User) => async (dispatch: Dispatch) => {
+export const updateAction = (newUser: NewUser) => async (dispatch: Dispatch) => {
 
     try {
 

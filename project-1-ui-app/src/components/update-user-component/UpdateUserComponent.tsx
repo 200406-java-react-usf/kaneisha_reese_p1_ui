@@ -31,6 +31,7 @@ const UpdateUserComponent = (props: IUpdateProps) => {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [role, setRole] = useState('');
 
     let updateFormField = (e: any) => {
         switch (e.currentTarget.id) {
@@ -49,13 +50,15 @@ const UpdateUserComponent = (props: IUpdateProps) => {
             case 'password':
                 setPassword(e.target.value);
                 break;
+            case 'role':
+                setRole(e.target.value);
             default:
                 console.warn(`Improper binding detected on element with id: ${e.currentTarget.id}`);
         }
     }
 
     let update = async () => {
-        props.updateAction(new NewUser(firstName, lastName, email, username, password))
+        props.updateAction(new NewUser(firstName, lastName, email, username, password, role))
     }
 
     return(
