@@ -11,12 +11,13 @@ import {
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab'
 import { User } from "../../dtos/user";
+import { NewUser } from "../../dtos/new-user";
 
 
 interface ILoginProps {
     authUser: User;
     errorMessage: string;
-    loginAction: (username: string, password:string) => void;
+    loginAction: (username: string, password: string) => void;
 }
 
 const useStyles = makeStyles({
@@ -56,7 +57,7 @@ const LoginComponent = (props: ILoginProps) => {
     }
 
     return (
-        props.authUser ? <Redirect to='/home' />:
+        props.authUser ? <Redirect to='/dashboard' />:
         <div className = {classes.loginContainer}>
             <form className = {classes.loginForm}>
                 <Typography align="center" variant = "h4">Expense Reimbursement System Login</Typography>
