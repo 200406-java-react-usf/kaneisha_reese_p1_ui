@@ -5,8 +5,7 @@ import NewUserComponent from "./NewUserComponent";
 
 const mapStateToProps = (state: IState) => {
     return {
-        ...state,
-        
+        newUser: state.newUser.newUser,
         errorMessage: state.update.errorMessage
           
     }

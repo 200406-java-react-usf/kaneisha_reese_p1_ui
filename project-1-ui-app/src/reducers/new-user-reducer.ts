@@ -16,7 +16,8 @@ export const newUserReducer = (state: INewUserState = initialState, action: AnyA
         case newUserActionTypes.SUCCESSFUL_REGISTRATION:
             return {
                 ...state,
-                authUser: action.payload
+                newUser: action.payload
+
             }
 
         case newUserActionTypes.BAD_REQUEST:
