@@ -6,8 +6,10 @@ import { store } from './Store';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import LoginComponent from './components/login-component/LoginContainer';
 import NavbarComponent from './components/navbar-component/NavbarContainer';
-import HomeComponent from './components/home-component/HomeContainer';
+import DashboardComponent from './components/dashboard-component/DashboardContainer';
 import UpdateUserComponent from './components/update-user-component/UpdateUserContainer'
+import NewUserComponent from './components/new-user-component/NewUserContainer';
+import UserComponent from './components/user-component/UserContainer'
 
 
 function App() {
@@ -24,8 +26,10 @@ function App() {
           </AppBar>
           <Switch>
             <Route path='/login' render={()=><LoginComponent />} />
-            <Route path='/home' render={()=><HomeComponent />} />
+            <Route path='/dashboard' render={()=><DashboardComponent />} />
+            <Route path='/newuser' render={()=><NewUserComponent />} />
             <Route path='/update' render={()=><UpdateUserComponent />} />
+            <Route path='/users' render= {()=><UserComponent />} />
           </Switch>
         </Router>
       </Provider>
