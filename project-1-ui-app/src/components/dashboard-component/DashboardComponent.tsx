@@ -9,7 +9,6 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom";
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 interface IDashboardProps {
     authUser:User;
@@ -103,14 +102,14 @@ const DashboardComponent = (props: IDashboardProps) => {
                         <Grid item sm = {4} >
                             <Typography variant="button">
                                 <Button>
-                                <Link to='/employees' className={classes.link}>View All Employees</Link>
+                                <Link to='/users' className={classes.link}>View All Employees</Link>
                                 </Button>    
                             </Typography>    
                         </Grid>
                         <Grid item sm = {4} >
                             <Typography variant="button">
                                 <Button>
-                                    Add New Employee
+                                    <Link to='/newuser' className={classes.link}> Add New Employee</Link>
                                 </Button>    
                             </Typography>    
                         </Grid>
