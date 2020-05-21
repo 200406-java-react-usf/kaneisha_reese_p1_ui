@@ -19,10 +19,6 @@ export const userAction = (newUser: NewUser) => async (dispatch: Dispatch) => {
             payload: retrievedUser
         });
         
-        dispatch({
-            type: loginActionTypes.SUCCESSFUL_LOGIN,
-            payload: retrievedUser
-        });
 
     } catch (e) {
 

@@ -1,16 +1,16 @@
-import { ILoginState } from ".";
+import { IUserState } from ".";
 import { User } from "../dtos/user";
 import { AnyAction } from "redux";
 import { UserActionTypes } from "../actions/user-actions"
 
 
-const initialState: ILoginState = {
+const initialState: IUserState = {
     //@ts-ignore
     authUser: (null as User),
     errorMessage: ''
 }
 
-export const userReducer = (state: ILoginState = initialState, action: AnyAction) => {
+export const userReducer = (state: IUserState = initialState, action: AnyAction) => {
 
     switch(action.type) {
         case UserActionTypes.SUCCESSFUL:
