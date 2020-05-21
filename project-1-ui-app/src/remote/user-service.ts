@@ -8,16 +8,16 @@ export async function addUser(newUser: NewUser) {
 }
 
 export async function getUsers() {
-    return await ersClient.get('/users');
+    let response = await ersClient.get('/users');
+    return await response.data;
 }
 
 export async function getUserById(id: number) {
-    return await ersClient.get(`/users/${id}`);
+    let response = ersClient.get(`/users/${id}`);
+    return (await response).data;
 }
 
-export async function getUserByUniqueKey(key: string, value: string) {
-    return await ersClient.get(`/users?${key}=${value}`);
-}
+
 
 export async function updateUser(updatedUser: NewUser) {
     let response = await ersClient.put('/users', updatedUser);

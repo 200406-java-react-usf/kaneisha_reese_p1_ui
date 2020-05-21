@@ -28,15 +28,16 @@ const NavbarComponent = (props: INavbarProps) => {
             <List component="nav">
                 <ListItem component="div" >
                     <TypoGraphy color="inherit" variant="h5">ERS</TypoGraphy>
-                    <ListItemText inset>
-                    <TypoGraphy color="inherit" variant="h6">
-                            <Link to='/home' className={classes.link}>Home</Link>
-                        </TypoGraphy> 
-                    </ListItemText>
+                    
                     <ListItemText inset>
                         <TypoGraphy color="inherit" variant="h6">
                             <Link to='/login' className={classes.link}>Login</Link>
                         </TypoGraphy>
+                    </ListItemText>
+                    <ListItemText inset>
+                    <TypoGraphy color="inherit" variant="h6">
+                            <Link to='/dashboard' className={classes.link}>Dashboard</Link>
+                        </TypoGraphy> 
                     </ListItemText>
                     <ListItemText inset>
                         <TypoGraphy color="inherit" variant="h6">

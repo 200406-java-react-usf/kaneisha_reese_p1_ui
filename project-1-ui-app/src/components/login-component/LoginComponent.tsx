@@ -72,11 +72,11 @@ const LoginComponent = (props: ILoginProps) => {
                     />
                 </FormControl>
                 <FormControl margin="normal" fullWidth>
-                    <InputLabel htmlFor="password">Username</InputLabel>
+                    <InputLabel htmlFor="password">Password</InputLabel>
                     <Input
                         onChange={updateFormField}
                         value={password}
-                        id="password" type="text"
+                        id="password" type="password"
                         placeholder="Enter your password"
                     />
                 </FormControl>
