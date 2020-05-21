@@ -15,8 +15,11 @@ import { addUser } from '../../remote/user-service';
 import { NewUser } from "../../dtos/new-user";
 import { newUserAction } from "../../actions/new-user-action";
 import { connect } from "react-redux";
+import { User } from "../../dtos/user";
+import { Redirect } from "react-router";
 
 interface INewUserProps {
+    authUser: User;
     newUser: NewUser;
     errorMessage: string;
     newUserAction: (user: NewUser) => void;
@@ -65,7 +68,7 @@ function NewUserComponent(props: INewUserProps) {
                 setPassword(e.currentTarget.value);
                 break;
             case 'role':
-                setRole((e.target as HTMLInputElement).value));    
+                setRole(e.currentTarget.value);    
             default:
                 console.warn(`Improper binding detected on element with id: ${e.currentTarget.id}`);
         }
@@ -78,6 +81,7 @@ function NewUserComponent(props: INewUserProps) {
     }
 
     return (
+        !props.authUser ? <Redirect to='/login' />:
         <>
             <div className={classes.newUserContainer}>
                 <form className={classes.newUserForm}>
@@ -101,21 +105,21 @@ function NewUserComponent(props: INewUserProps) {
                     </ FormControl>
 
                     < FormControl margin="normal" fullWidth>
-                        < InputLabel htmlFor="firstname">First Name</InputLabel>
+                        < InputLabel htmlFor="firstName">First Name</InputLabel>
                         < Input
                             onChange={updateFormField}
                             value={firstName}
-                            id="firstname" type="text"
-                            placeholder="Enter your first name" />
+                            id="firstName" type="text"
+                            placeholder="Enter first name" />
                     </ FormControl>
 
                     < FormControl margin="normal" fullWidth>
-                        < InputLabel htmlFor="lastname">Last Name</InputLabel>
+                        < InputLabel htmlFor="lastName">Last Name</InputLabel>
                         < Input
                             onChange={updateFormField}
                             value={lastName}
-                            id="lastname" type="text"
-                            placeholder="Enter your last name" />
+                            id="lastName" type="text"
+                            placeholder="Enter last name" />
                     </ FormControl>
 
                     < FormControl margin="normal" fullWidth>
@@ -128,13 +132,12 @@ function NewUserComponent(props: INewUserProps) {
                     </ FormControl>
 
                     < FormControl margin="normal" fullWidth>
-                    
-                        <RadioGroup aria-label="role" name="role" value={role} onChange={updateFormField}>
-                            <FormControlLabel value="employee" control={<Radio />} label="employee" />
-                            <FormControlLabel value="manager" control={<Radio />} label="manager" />
-                            <FormControlLabel value="admin" control={<Radio />} label="admin" />
-                        </RadioGroup>
-                            
+                        < InputLabel htmlFor="role">Role</InputLabel>
+                        < Input
+                            onChange={updateFormField}
+                            value={role}
+                            id="role" type="text"
+                            placeholder="Enter a role" />
                     </ FormControl>
                     <br/> <br/>
                     < Button 
