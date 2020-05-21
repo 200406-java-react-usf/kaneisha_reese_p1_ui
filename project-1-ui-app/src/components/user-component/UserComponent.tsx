@@ -62,10 +62,6 @@ const UserComponent = (props: IUserProps) => {
         }
     }
 
-    useEffect(() => {
-        getTableData();
-    }, []);
-
     return (
         !props.authUser ? <Redirect to="/home" /> :
         <>
