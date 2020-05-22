@@ -9,7 +9,8 @@ import NavbarComponent from './components/navbar-component/NavbarContainer';
 import DashboardComponent from './components/dashboard-component/DashboardContainer';
 import UpdateUserComponent from './components/update-user-component/UpdateUserContainer'
 import NewUserComponent from './components/new-user-component/NewUserContainer';
-import UserComponent from './components/user-component/UserContainer'
+import UserComponent from './components/user-component/UserContainer';
+import ReimbComponent from './components/reimb-component/ReimbContainer';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Route path='/newuser' render={()=><NewUserComponent />} />
             <Route path='/update' render={()=><UpdateUserComponent />} />
             <Route path='/users' render= {()=><UserComponent />} />
+            <Route path='/reimbs' render= {()=><ReimbComponent />} />
           </Switch>
         </Router>
       </Provider>

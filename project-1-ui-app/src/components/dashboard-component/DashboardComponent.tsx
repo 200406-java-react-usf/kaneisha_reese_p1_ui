@@ -145,27 +145,20 @@ const DashboardComponent = (props: IDashboardProps) => {
                         <Typography variant="h4">Employee</Typography>
                     </Grid>
                     
-                    <Grid item sm = {4} >
-                        <Typography variant="button">
-                            <Button>
-                                Update Password
-                            </Button>    
-                        </Typography>    
-                    </Grid>
                     <Grid item sm={4} >
-                    <Typography variant="h6">
-                            <Button>
-                                View Reimbursements
-                            </Button>    
-                        </Typography> 
-                    </Grid>
-                    <Grid item sm={4} >
-                    <Typography variant="h6">
-                            <Button>
-                                Submit Reimbursement
-                            </Button>    
-                        </Typography> 
-                    </Grid>
+                        <Typography variant="h6">
+                                <Button>
+                                <Link to='/reimbs' className={classes.link}>View Reimbursements</Link>
+                                </Button>    
+                            </Typography> 
+                        </Grid>
+                        <Grid item sm={4} >
+                        <Typography variant="h6">
+                                <Button>
+                                    Submit Reimbursement
+                                </Button>    
+                            </Typography> 
+                        </Grid>
 
                     
 
@@ -211,27 +204,20 @@ const DashboardComponent = (props: IDashboardProps) => {
                         <Typography variant="h4">Employee</Typography>
                     </Grid>
                     
-                    <Grid item sm = {4} >
-                        <Typography variant="button">
-                            <Button>
-                                Update Password
-                            </Button>    
-                        </Typography>    
-                    </Grid>
                     <Grid item sm={4} >
-                    <Typography variant="h6">
-                            <Button>
-                                View Reimbursements
-                            </Button>    
-                        </Typography> 
-                    </Grid>
-                    <Grid item sm={4} >
-                    <Typography variant="h6">
-                            <Button>
-                                Submit Reimbursement
-                            </Button>    
-                        </Typography> 
-                    </Grid>
+                        <Typography variant="h6">
+                                <Button>
+                                <Link to='/reimbs' className={classes.link}>View Reimbursements</Link>
+                                </Button>    
+                            </Typography> 
+                        </Grid>
+                        <Grid item sm={4} >
+                        <Typography variant="h6">
+                                <Button>
+                                    Submit Reimbursement
+                                </Button>    
+                            </Typography> 
+                        </Grid>
                 </Grid>
             </Paper>
     
