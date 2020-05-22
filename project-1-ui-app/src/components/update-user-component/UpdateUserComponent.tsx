@@ -3,11 +3,12 @@ import { NewUser } from '../../dtos/new-user'
 import { User } from '../../dtos/user'
 import { makeStyles, Button, Typography, FormControl, InputLabel, Input } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import { updateUser } from '../../remote/user-service';
 
 export interface IUpdateProps {
    authUser: User ;
    errorMessage: string;
-   updateAction: (newUser: NewUser) => void; 
+   
 }
 
 const useStyles = makeStyles({
@@ -58,7 +59,7 @@ const UpdateUserComponent = (props: IUpdateProps) => {
     }
 
     let update = async () => {
-        props.updateAction(new NewUser(firstName, lastName, email, username, password, role))
+         updateUser(new NewUser(firstName, lastName, email, username, password, role))
     }
 
     return(

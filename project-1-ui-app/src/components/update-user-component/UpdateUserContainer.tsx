@@ -1,7 +1,8 @@
 import { IState } from "../../reducers";
 import UpdateUserComponent from "./UpdateUserComponent";
 import { connect } from "react-redux";
-import { updateAction } from '../../actions/update-user-action';
+
+
 
 const mapStateToProps = (state: IState) => {
     return {
@@ -11,7 +12,7 @@ const mapStateToProps = (state: IState) => {
 }
 
 const mapDispatchToProps = {
-    updateAction
+    
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateUserComponent);
