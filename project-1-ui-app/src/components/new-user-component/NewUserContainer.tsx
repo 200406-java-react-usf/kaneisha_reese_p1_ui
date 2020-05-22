@@ -7,7 +7,7 @@ const mapStateToProps = (state: IState) => {
     return {
         authUser: state.login.authUser,
         newUser: state.newUser.newUser,
-        errorMessage: state.update.errorMessage
+        errorMessage: state.newUser.errorMessage
           
     }
 }

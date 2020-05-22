@@ -13,7 +13,7 @@ export const newUserAction = (newUser: NewUser) => async (dispatch: Dispatch) =>
 
     try {
 
-        let registeredUser = await addUser(newUser);
+        let registeredUser = await addUser(newUser.username, newUser.password, newUser.firstName, newUser.lastName, newUser.email, newUser.role);
         dispatch({
             type: newUserActionTypes.SUCCESSFUL_REGISTRATION,
             payload: registeredUser

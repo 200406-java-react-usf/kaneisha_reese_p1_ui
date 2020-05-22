@@ -1,6 +1,5 @@
 import { User } from "../dtos/user"
 import { AnyAction } from "redux"
-import { loginActionTypes } from "../actions/login-action"
 import { newUserActionTypes } from "../actions/new-user-action"
 import { INewUserState } from "."
 import { NewUser } from "../dtos/new-user"
