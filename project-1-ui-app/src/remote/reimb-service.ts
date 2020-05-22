@@ -3,7 +3,10 @@ import { ersClient } from "./ers-client";
 
 import { Reimb } from "../dtos/reimb";
 
-
+export async function addReimb(newRimb: Reimb) {
+    let response = await ersClient.post('/users', {newRimb});
+    return (await response).data;
+} 
 
 export async function getReimbs() {
     return await ersClient.get('/reimb');

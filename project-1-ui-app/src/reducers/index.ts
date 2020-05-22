@@ -1,10 +1,10 @@
 import { User } from "../dtos/user";
 import { combineReducers } from "redux";
 import { loginReducer } from "./login-reducer";
-import { updateReducer } from "./update-user-reducer"
+
 import { newUserReducer } from "./new-user-reducer"
 import { NewUser } from "../dtos/new-user";
-import { userReducer } from "./user-reducer"
+
 
 export interface ILoginState {
     authUser: User;
@@ -21,16 +21,11 @@ export interface INewUserState {
     errorMessage: string;
 }
 
-export interface IUserState {
-    authUser: User;
-    errorMessage: string;
-}
 
 export interface IState {
     login: ILoginState;
-    update: IUpdateState;
     newUser: INewUserState;
-    user: IUserState
+
 
 }
 
@@ -38,9 +33,7 @@ export interface IState {
 
 export const state = combineReducers<IState>({
      login: loginReducer,
-     update: updateReducer,
-     newUser: newUserReducer,
-     user: userReducer
+     newUser: newUserReducer
  });
 
  
