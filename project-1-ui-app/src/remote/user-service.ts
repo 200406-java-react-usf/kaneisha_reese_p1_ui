@@ -2,10 +2,10 @@ import { User } from "../dtos/user";
 import { ersClient } from "./ers-client";
 import { NewUser } from "../dtos/new-user";
 
-export async function addUser(newUser: NewUser) {
-    let response = await ersClient.post('/users', newUser);
-    return await response.data;
-}
+export async function addUser(username: string, password: string, firstName: string, lastName: string, email: string, role: string) {
+    let response = await ersClient.post('/users', {username, password, firstName, lastName, email, role});
+    return (await response).data;
+} 
 
 export async function getUsers() {
     let response = await ersClient.get('/users');
@@ -19,11 +19,12 @@ export async function getUserById(id: number) {
 
 
 
-export async function updateUser(updatedUser: NewUser) {
-    let response = await ersClient.put('/users', updatedUser);
-    return response.data;
+export async function updateUser(u: NewUser) {
+    let response = await ersClient.put('/users', {u});
+    return await response.data;
 }
 
 export async function deleteUserById(id: number) {
-    return await ersClient.delete(`/users/${id}`);
+    let response = await ersClient.delete(`/users/${id}`);
+    return;
 }
