@@ -7,9 +7,9 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import LoginComponent from './components/login-component/LoginContainer';
 import NavbarComponent from './components/navbar-component/NavbarContainer';
 import DashboardComponent from './components/dashboard-component/DashboardContainer';
-import UpdateUserComponent from './components/update-user-component/UpdateUserContainer'
 import UserComponent from './components/user-component/UserContainer';
 import ReimbComponent from './components/reimb-component/ReimbContainer';
+import ManagerReimbComponent from './components/manager-reimb-component/ManagerReimbContainer';
 
 
 function App() {
@@ -27,9 +27,9 @@ function App() {
           <Switch>
             <Route path='/login' render={()=><LoginComponent />} />
             <Route path='/dashboard' render={()=><DashboardComponent />} />
-            <Route path='/update' render={()=><UpdateUserComponent />} />
             <Route path='/users' render= {()=><UserComponent />} />
             <Route path='/reimbs' render= {()=><ReimbComponent />} />
+            <Route path='/managerreimbs' render= {()=><ManagerReimbComponent/>} />
           </Switch>
         </Router>
       </Provider>
