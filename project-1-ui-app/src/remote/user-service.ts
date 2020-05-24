@@ -17,7 +17,9 @@ export async function getUserById(id: number) {
     return (await response).data;
 }
 
-
+export async function logout() {
+    
+}
 
 export async function updateUser(u: NewUser) {
     let response = await ersClient.put('/users', {u});
