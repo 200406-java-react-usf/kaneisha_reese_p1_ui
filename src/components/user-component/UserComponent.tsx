@@ -3,7 +3,9 @@ import MaterialTable from 'material-table';
 import { getUsers, updateUser, deleteUserById, addUser } from '../../remote/user-service';
 import { User } from '../../dtos/user';
 import { Alert } from '@material-ui/lab';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Select, MenuItem } from '@material-ui/core';
+import { NewUser } from '../../dtos/new-user';
+
 
 export interface IUserProps {
     authUser: User;
@@ -31,7 +33,7 @@ const UserComponent = (props: IUserProps) => {
         setTableData(result);
     }
 
-    const updateRow = async (updatedUser: User) => {
+    const updateRow = async (updatedUser: NewUser) => {
         try {
             await updateUser(updatedUser);
             getTableData();
@@ -68,21 +70,29 @@ const UserComponent = (props: IUserProps) => {
         <div className={classes.userTable}>
             < MaterialTable
             columns = {[
-                { title: 'User ID', field: 'user_id', editable: 'never'},
-                { title: 'First Name', field: 'firstName', editable: 'onAdd' },
-                { title: 'Last Name', field: 'lastName', editable: 'onAdd' },
-                { title: 'Username', field: 'username', editable: 'always'},
-                { title: 'Email', field: 'email'},
-                { title: 'Role', field: 'role'},
+                {title: 'User ID', field: 'user_id', editable: 'never'},
+                {title: 'Username', field: 'username', editable: 'onAdd'},
+                {title: 'First Name', field: 'firstName'},
+                {title: 'Last Name', field: 'lastName'},
+                {title: 'Password', field: 'password' },
+                {title: 'Email', field: 'email'},
+                {title: 'Role', field: 'role', editable: 'always', editComponent:((props)=> 
+            (<Select defaultValue={'employee'} value={props?.value || ''} onChange={e => props.onChange(e.target.value)}>
+                  <MenuItem value={'admin'}>Administrator</MenuItem>
+                  <MenuItem value={'manager'}>Finance Manager</MenuItem>
+                  <MenuItem value={'employee'}>Employee</MenuItem>
+              </Select>)) }
             ]}
             data = {users}
             title = "All System Users"
+            
             editable = {{
                 onRowAdd: newData => 
                 new Promise((resolve, reject) => {
                     addNew(newData);
                     resolve();
                 }),
+                
                 onRowUpdate: (newData, oldData) => 
                 new Promise((resolve, reject) => {
                     resolve();

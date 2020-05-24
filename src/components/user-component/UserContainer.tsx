@@ -5,7 +5,8 @@ import UserComponent from './UserComponent';
 const mapStateToProps = (state: IState) => {
     return {
         authUser: state.login.authUser,
-        errorMessage: ''
+        errorMessage: '',
+        users: state.user.users
 
     }
 }

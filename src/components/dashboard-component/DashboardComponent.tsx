@@ -168,7 +168,7 @@ const DashboardComponent = (props: IDashboardProps) => {
                     <Grid item sm = {4} >
                         <Typography variant="button">
                             <Button>
-                                View All Reimbursements
+                                <Link to='/managerreimbs' className={classes.link}>View All Reimbursements</Link>  
                             </Button>    
                         </Typography>    
                     </Grid>
