@@ -2,18 +2,25 @@
 import { ersClient } from "./ers-client";
 
 import { Reimb } from "../dtos/reimb";
+import { User } from "../dtos/user";
 
-export async function addReimb(newRimb: Reimb) {
-    let response = await ersClient.post('/users', {newRimb});
+export async function addReimb(newRimb: Reimb, user: User) {
+    let response = await ersClient.post('/reimbs', {newRimb, user});
     return (await response).data;
 } 
 
 export async function getReimbs() {
-    return await ersClient.get('/reimb');
+    let response = await ersClient.get('/reimbs');
+    return await response.data;
 }
 
 export async function getReimbsByUser(username:string) {
-    return await ersClient.get(`/reimb/${username}`)
+    console.log('made it here ui');
+    console.log(username);
+    
+    let response = await ersClient.get(`/reimbs/${username}`);
+    console.log(response)
+    return await(response.data)
 }
 
 export async function getReimbById(id: number) {
