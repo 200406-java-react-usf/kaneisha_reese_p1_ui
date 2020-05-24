@@ -6,18 +6,10 @@ phases:
   pre_build:
     commands:
       - npm install
-<<<<<<< HEAD
-      #- echo "We would use 'npm test' here to run our tests (if we had any)"
-=======
       - echo "We would use 'npm test' here to run our tests (if we had any)"
->>>>>>> setup
   build: 
     commands:
       - npm run build
   post_build:
     commands:
-<<<<<<< HEAD
       - aws s3 sync ./build s3://kaneisha-reese-p1-ui
-=======
-      - aws s3 sync ./build s3://kaneisha-reese-p1-ui
->>>>>>> setup
