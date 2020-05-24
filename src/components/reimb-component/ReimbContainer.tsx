@@ -1,6 +1,6 @@
 import { IState } from "../../reducers";
 import { connect } from "react-redux";
-import ReimbComponent from './ReimbComponent';
+import ReimbComponent from "./ReimbComponent";
 
 const mapStateToProps = (state: IState) => {
     return {
