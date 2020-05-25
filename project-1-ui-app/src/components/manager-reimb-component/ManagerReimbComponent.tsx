@@ -33,10 +33,11 @@ const ManagerReimbComponent = (props: IManagerReimbProps) => {
         console.log(result);
         setTableData(result);
     }
-
+    let manager = props.authUser
     const updateRow = async (updatedReimb: Reimb) => {
         try {
-            await updateReimb(updatedReimb);
+            await updateReimb(updatedReimb, manager);
+            
             getTableData();
         } catch (e) {
             setErrorMessage(e.response.data.reason);
@@ -52,15 +53,8 @@ const ManagerReimbComponent = (props: IManagerReimbProps) => {
             setErrorMessage(e.response.data.reason)
         }
     }
-    let newUser = props.authUser
-    const addNewReimb = async (newReimb: Reimb) =>{
-        try{
-            await addReimb(newReimb, newUser);
-            getTableData();
-        }catch(e){
-            setErrorMessage(e.response.data.reason)
-        }
-    }
+    
+    
 
     useEffect(() => {
         getTableData();
@@ -73,30 +67,24 @@ const ManagerReimbComponent = (props: IManagerReimbProps) => {
             < MaterialTable
             columns = {[
                 { title: 'Id', field: 'reimb_id', editable: 'never'},
-                { title: 'Amount', field: 'amount', editable: 'always', type: 'currency', cellStyle: {textAlign: 'left'} },
+                { title: 'Amount', field: 'amount', editable: 'never', type: 'currency', cellStyle: {textAlign: 'left'} },
                 { title: 'Submitted (Time)', field: 'submitted' , editable: 'never', type: 'datetime'},
                 { title: 'Resolved (Time)', field: 'resolved', editable: 'never', type: 'datetime'},
-                { title: 'Description', field: 'description' , editable: 'always'},
+                { title: 'Description', field: 'description' , editable: 'never'},
                 { title: 'Author', field: 'author' , editable: 'never'},
                 { title: 'Resolver', field: 'resolver', editable: 'never' },
-                { title: 'Reimb Status', field: 'reimb_status' , editable: 'never'},
-                { title: 'Reimb Type', field: 'reimb_type', editComponent:((props) => 
+                { title: 'Reimb Type', field: 'reimb_type' , editable: 'never'},
+                { title: 'Reimb Status', field: 'reimb_status', editable:'always', editComponent:((props) => 
                     (<select value={props.value || ''} onChange={e => props.onChange(e.target.value)} >
-                        <option value={'lodging'}>Lodging</option>
-                        <option value={'travel'}>Travel</option>
-                        <option value={'food'}>Food</option>
-                        <option value={'other'}>Other</option>
-                        </select>)) },
+                        <option value={'approved'}>Approved</option>
+                        <option value={'denied'}>Denied</option>
+                    </select>)) },
                 
             ]}
             data = {reimbs}
             title = "User Reimbursements"
             editable = {{
-                onRowAdd: newData => 
-                new Promise((resolve, reject) => {
-                    addNewReimb(newData, );
-                    resolve();
-                }),
+                
                 onRowUpdate: (newData, oldData) => 
                 new Promise((resolve, reject) => {
                     updateRow(newData);
