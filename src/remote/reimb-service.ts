@@ -4,12 +4,14 @@ import { ersClient } from "./ers-client";
 import { Reimb } from "../dtos/reimb";
 import { User } from "../dtos/user";
 
-export async function addReimb(newRimb: Reimb, user: User) {
-    let response = await ersClient.post('/reimbs', {newRimb, user});
+export async function addReimb(newReimb: Reimb, user: User) {
+    console.log(newReimb);
+    
+    let response = await ersClient.post('/reimbs', {newReimb, user});
     return (await response).data;
 } 
 
-export async function getReimbs() {
+export async function getReimbs(...user:User[]) {
     let response = await ersClient.get('/reimbs');
     return await response.data;
 }
@@ -28,9 +30,14 @@ export async function getReimbById(id: number) {
 }
 
 
-export async function updateReimb(updatedReimb: Reimb) {
-    let response = await ersClient.put('/reimbs', updatedReimb);
-    return response.data;
+export async function updateReimb(updatedReimb: Reimb, manager: User) {
+    console.log('made it here ui');
+    console.log(updatedReimb);
+    console.log(manager);
+    
+    
+    let response = await ersClient.put('/reimbs', {updatedReimb, manager});
+    return await response.data;
 }
 
 export async function deleteReimbById(id: number) {

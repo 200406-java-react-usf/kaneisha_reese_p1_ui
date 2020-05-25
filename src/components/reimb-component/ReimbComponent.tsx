@@ -3,7 +3,7 @@ import MaterialTable from 'material-table';
 import { getReimbs, getReimbById, updateReimb, deleteReimbById, addReimb, getReimbsByUser } from '../../remote/reimb-service';
 import { User } from '../../dtos/user';
 import { Alert } from '@material-ui/lab';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Select, MenuItem } from '@material-ui/core';
 import { Reimb } from '../../dtos/reimb';
 import { Redirect } from 'react-router';
 
@@ -22,20 +22,23 @@ const useStyles = makeStyles({
     },
 });
 
-const UserComponent = (props: IReimbProps) => {
+const ReimbComponent = (props: IReimbProps) => {
 
     const classes = useStyles();
     const [reimbs, setTableData] = useState([new Reimb(0,0,new Date,new Date,'','','','','')]);
     const [errorMessage, setErrorMessage] = useState('');
 
     let getTableData = async () => {
-        let result = await getReimbsByUser(props.authUser.username);
-        setTableData(result.data);
+        let result = (await getReimbs()).filter(function(reimb: Reimb) {
+            return reimb.author == props.authUser.username;
+        });
+        console.log(result);
+        setTableData(result);
     }
-
+    let newUser = props.authUser;
     const updateRow = async (updatedReimb: Reimb) => {
         try {
-            await updateReimb(updatedReimb);
+            await updateReimb(updatedReimb, newUser);
             getTableData();
         } catch (e) {
             setErrorMessage(e.response.data.reason);
@@ -51,8 +54,9 @@ const UserComponent = (props: IReimbProps) => {
             setErrorMessage(e.response.data.reason)
         }
     }
-    let newUser = props.authUser
+    
     const addNewReimb = async (newReimb: Reimb) =>{
+        console.log(newReimb);
         try{
             await addReimb(newReimb, newUser);
             getTableData();
@@ -70,55 +74,60 @@ const UserComponent = (props: IReimbProps) => {
     <>
         <div className={classes.reimbTable}>
             < MaterialTable
-            columns = {[
-                { title: 'Id', field: 'reimb_id', editable: 'never'},
-                { title: 'Amount', field: 'amount', editable: 'always', type: 'currency', cellStyle: {textAlign: 'left'} },
-                { title: 'Submitted (Time)', field: 'submitted' , editable: 'never', type: 'datetime'},
-                { title: 'Resolved (Time)', field: 'resolved', editable: 'never', type: 'datetime'},
-                { title: 'Description', field: 'description' , editable: 'always'},
-                { title: 'Author', field: 'author' , editable: 'never'},
-                { title: 'Resolver', field: 'resolver', editable: 'never' },
-                { title: 'Reimb Status', field: 'reimb_status' , editable: 'never'},
-                { title: 'Reimb Type', field: 'reimb_type', editComponent:((props) => 
-                    (<select value={props.value || ''} onChange={e => props.onChange(e.target.value)} >
-                        <option value={'lodging'}>Lodging</option>
-                        <option value={'travel'}>Travel</option>
-                        <option value={'food'}>Food</option>
-                        <option value={'other'}>Other</option>
-                        </select>)) },
                 
-            ]}
-            data = {[]}
+                columns = {[
+                    { title: 'Id', field: 'reimb_id', editable: 'never'},
+                    { title: 'Amount', field: 'amount', editable: 'always', type: 'currency', cellStyle: {textAlign: 'left'} },
+                    { title: 'Submitted (Time)', field: 'submitted' , editable: 'never', type: 'datetime'},
+                    { title: 'Resolved (Time)', field: 'resolved', editable: 'never', type: 'datetime'},
+                    { title: 'Description', field: 'description' , editable: 'always'},
+                    { title: 'Author', field: 'author' , editable: 'never'},
+                    { title: 'Resolver', field: 'resolver', editable: 'never' },
+                    { title: 'Reimb Status', field: 'reimb_status' , editable: 'never'},
+                    { title: 'Reimb Type', field: 'reimb_type', editComponent:((props) => 
+                        (<Select defaultValue={'other'} value={props?.value || ''} onChange={e => props.onChange(e.target.value)}>
+                            <MenuItem value={'lodging'}>Lodging</MenuItem>
+                            <MenuItem value={'food'}>Food</MenuItem>
+                            <MenuItem value={'travel'}>Travel</MenuItem>
+                            <MenuItem value={'other'}>Other</MenuItem>
+                        </Select>)) }   
+                    
+                ]}
+            data = {reimbs}
             title = "User Reimbursements"
-            editable = {{
-                onRowAdd: newData => 
-                new Promise((resolve, reject) => {
-                    addNewReimb(newData, );
+            editable= {{
+
+                onRowAdd: newData =>
+                new Promise((resolve,reject) => {
+                    addNewReimb(newData);
                     resolve();
                 }),
-                onRowUpdate: (newData, oldData) => 
-                new Promise((resolve, reject) => {
-                    updateRow(newData);
+                onRowUpdate: (newData, oldData) =>
+                new Promise((resolve,reject) =>{
                     resolve();
+                    updateRow(newData);
                 }),
                 onRowDelete: oldData =>
-                new Promise((resolve, reject) => {
-                    deleteRow(oldData);
-                    resolve();
+                new Promise((resolve, reject) =>{
+                    console.log(oldData.reimb_id)
+                    deleteRow(oldData)
                 })
             }}
+            
             />
-            {
-                (props.errorMessage)
-                ?
-                < Alert severity="error">{props.errorMessage}</Alert>
-                :
-                <></>
-            }
-        
-        </div>
-    </>
-  );
+
+
+    {
+        props.errorMessage 
+            ? 
+        <Alert severity="error">{props.errorMessage}</Alert>
+            :
+        <></>
+    }
+    </div>
+
+</>
+);
 }
 
-export default UserComponent;
+export default ReimbComponent;
